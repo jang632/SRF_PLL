@@ -1,0 +1,18 @@
+CORDIC_SIN_COS
+theta, sin_value, cos_value : 28
+
+CLARKE_TRANSFORM
+v_a, v_b, v_c : 14
+v_alpha, v_beta : 28
+
+PARKE_TRANSFORM
+v_d, v_q : 24
+v_d_int, v_q_int : 56
+
+PI_CONTROLLER
+error_in, kiTs, kp : 24
+integrator, omega_int : 48
+omega_out  : 16
+
+SRF_PLL
+IN COMMENTS NEXT TO PORTS
