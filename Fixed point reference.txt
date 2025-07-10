@@ -10,7 +10,8 @@ v_d, v_q : 24
 v_d_int, v_q_int : 56
 
 PI_CONTROLLER
-error_in, kiTs, kp : 24
+error_in : 24
+kiTs, kp : 22
 integrator, omega_int : 48
 omega_out  : 16
 

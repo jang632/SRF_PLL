@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="67" Path="C:/Users/Jan/Desktop/srfwf/srf_pll/srf_pll.xpr">
+<Project Product="Vivado" Version="7" Minor="67" Path="C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="84580f74071c4f03a4f80ed898ef3d5a"/>
@@ -58,7 +58,7 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="308"/>
+    <Option Name="WTXSimLaunchSim" Val="309"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -188,19 +188,19 @@
       </File>
       <File Path="$PSRCDIR/sim_1/imports/Desktop/PhaseSim50Hz.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../PhaseSim50Hz.txt"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../PhaseSim50Hz.txt"/>
           <Attr Name="ImportTime" Val="1752075688"/>
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sim_1/imports/Desktop/ThreePhaseSim.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../ThreePhaseSim.txt"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ThreePhaseSim.txt"/>
           <Attr Name="ImportTime" Val="1752075688"/>
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sim_1/imports/MATLAB/Sine50Hz_64kHz.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Documents/MATLAB/Sine50Hz_64kHz.txt"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/MATLAB/Sine50Hz_64kHz.txt"/>
           <Attr Name="ImportTime" Val="1752098924"/>
         </FileInfo>
       </File>
