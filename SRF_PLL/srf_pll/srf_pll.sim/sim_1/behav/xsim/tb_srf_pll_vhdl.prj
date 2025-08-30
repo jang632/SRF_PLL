@@ -5,7 +5,9 @@ vhdl xil_defaultlib  \
 "../../../../srf_pll.srcs/sources_1/new/ema_filter.vhd" \
 "../../../../srf_pll.srcs/sources_1/new/parke_transform.vhd" \
 "../../../../srf_pll.srcs/sources_1/new/pi_controller.vhd" \
+"../../../../srf_pll.srcs/sources_1/new/psc.vhd" \
 "../../../../srf_pll.srcs/sources_1/new/shift_register.vhd" \
+"../../../../srf_pll.srcs/sources_1/new/sogi.vhd" \
 "../../../../srf_pll.srcs/sources_1/new/srf_pll.vhd" \
 "../../../../srf_pll.srcs/sources_1/new/tb_srf_pll.vhd" \
 

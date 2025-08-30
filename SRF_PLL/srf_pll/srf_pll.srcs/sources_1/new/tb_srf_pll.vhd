@@ -56,7 +56,7 @@ begin
         wait for 1500 ns;
         reset <= '0';
 
-        file_open(txt_file, "Sine50Hz_64kHz.txt", read_mode);
+        file_open(txt_file, "ThreePhaseHarmonics_64kHz_16bit.txt", read_mode);
 
         while not endfile(txt_file) loop
             readline(txt_file, line_buf);

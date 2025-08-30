@@ -32,18 +32,6 @@ architecture Behavioral of srf_pll is
 
     SIGNAL v_q_ema         : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
 
-    component clarke_transform
-        Port (
-            clk      : IN  STD_LOGIC;
-            reset    : IN  STD_LOGIC;
-            v_a      : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-            v_b      : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-            v_c      : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-            v_alpha  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-            v_beta   : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
-        );
-    end component;
-
     component parke_transform
         Port (
             clk   : IN  STD_LOGIC;
@@ -87,17 +75,6 @@ BEGIN
             theta   => theta,
             v_d     => v_d,
             v_q     => v_q
-        );
-
-    clarke_inst : clarke_transform
-        port map (
-            clk      => clk,
-            reset    => reset,
-            v_a      => v_a,
-            v_b      => v_b,
-            v_c      => v_c,
-            v_alpha  => v_alpha,
-            v_beta   => v_beta
         );
 
     pi_ctrl_inst : pi_controller

@@ -1,7 +1,0 @@
-Running: xsim.dir/tb_srf_pll_behav/xsimk.exe -simmode gui -wdb tb_srf_pll_behav.wdb -simrunnum 0 -socket 51512
-Design successfully loaded
-Design Loading Memory Usage: 7712 KB (Peak: 7712 KB)
-Design Loading CPU Usage: 15 ms
-Simulation completed
-Simulation Memory Usage: 16296 KB (Peak: 16296 KB)
-Simulation CPU Usage: 7452 ms

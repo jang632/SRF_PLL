@@ -30,6 +30,13 @@ architecture Behavioral of parke_transform is
 
     SIGNAL v_alpha_delayed : STD_LOGIC_VECTOR(31 DOWNTO 0);
     SIGNAL v_beta_delayed  : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    
+    SIGNAL alpha_v : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL alpha_qv  : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL beta_v : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL beta_qv  : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL sogi_alpha : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL sogi_beta  : STD_LOGIC_VECTOR(31 DOWNTO 0);
 
     component clarke_transform
         Port (
@@ -64,6 +71,29 @@ architecture Behavioral of parke_transform is
             v_beta_del  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
         );
     end component;
+    
+    component sogi
+        Port (
+            clk   : IN STD_LOGIC;
+            reset : IN STD_LOGIC;
+            v_in  : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+            v_out : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+            qv    : OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+        );
+    end component;
+    
+    component psc
+        Port (
+            clk      : IN STD_LOGIC;
+            reset    : IN  STD_LOGIC;
+            alpha_v  : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+            alpha_qv : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+            beta_v   : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+            beta_qv  : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+            alpha    : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+            beta     : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+        );
+    end component;
 
 BEGIN
 
@@ -96,6 +126,36 @@ BEGIN
             v_beta      => v_beta,
             v_alpha_del => v_alpha_delayed,
             v_beta_del  => v_beta_delayed
+        );
+        
+        psc_inst : psc
+        port map (
+            clk      => clk,
+            reset    => reset,
+            alpha_v  => alpha_v,
+            alpha_qv => alpha_qv,
+            beta_v   => beta_v,
+            beta_qv  => beta_qv,
+            alpha    => sogi_alpha,
+            beta     => sogi_beta
+        );
+        
+        sogi_alpha_inst : sogi
+        port map (
+            clk   => clk,
+            reset => reset,
+            v_in  => v_alpha,
+            v_out => alpha_v,
+            qv    => alpha_qv
+        );
+        
+        sogi_beta_inst : sogi
+        port map (
+            clk   => clk,
+            reset => reset,
+            v_in  => v_beta,
+            v_out => beta_v,
+            qv    => beta_qv
         );
 
     PROCESS(clk)
