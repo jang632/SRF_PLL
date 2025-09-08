@@ -2,71 +2,67 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity srf_pll is
+ENTITY srf_pll IS
     PORT (
-        clk    : IN  STD_LOGIC;                         -- 1MHz
+        clk    : IN  STD_LOGIC;
         reset  : IN  STD_LOGIC;
-        v_a    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);     -- 14 bit binary point
-        v_b    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);     -- 14 bit binary point
-        v_c    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);     -- 14 bit binary point
-        omega  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);     -- 16 bit binary point
-        phase  : OUT STD_LOGIC_VECTOR(63 DOWNTO 0)      -- 60 bit binary point
+        v_a    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+        v_b    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+        v_c    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+        omega  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+        phase  : OUT STD_LOGIC_VECTOR(63 DOWNTO 0)
     );
-end srf_pll;
+END srf_pll;
 
-architecture Behavioral of srf_pll is
+ARCHITECTURE Behavioral OF srf_pll IS
 
-    SIGNAL v_alpha         : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    SIGNAL v_beta          : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    
-    SIGNAL theta           : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL theta     : SIGNED(31 DOWNTO 0);
 
-    SIGNAL v_d             : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    SIGNAL v_q             : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL v_d       : SIGNED(31 DOWNTO 0);
+    SIGNAL v_q       : SIGNED(31 DOWNTO 0);
 
-    SIGNAL omega_int       : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    SIGNAL theta_int       : signed(63 DOWNTO 0);
-    SIGNAL theta_64        : STD_LOGIC_VECTOR(63 DOWNTO 0);
+    SIGNAL omega_int : SIGNED(31 DOWNTO 0);
+    SIGNAL theta_int : SIGNED(63 DOWNTO 0);
 
-    CONSTANT Ts            : signed(31 DOWNTO 0) := x"00000863";
+    CONSTANT Ts      : SIGNED(31 DOWNTO 0) := x"00008312";
 
-    SIGNAL v_q_ema         : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
+    SIGNAL v_q_ema   : SIGNED(31 DOWNTO 0) := (OTHERS => '0');
 
-    component parke_transform
-        Port (
+    COMPONENT parke_transform
+        PORT (
             clk   : IN  STD_LOGIC;
             reset : IN  STD_LOGIC;
             v_a   : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
             v_b   : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
             v_c   : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-            theta : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
-            v_d   : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-            v_q   : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+            theta : IN  SIGNED(31 DOWNTO 0);
+            v_d   : OUT SIGNED(31 DOWNTO 0);
+            v_q   : OUT SIGNED(31 DOWNTO 0)
         );
-    end component;
+    END COMPONENT;
 
-    component pi_controller
-        Port (
+    COMPONENT pi_controller
+        PORT (
             clk       : IN  STD_LOGIC;
             reset     : IN  STD_LOGIC;
-            error_in  : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
-            omega_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+            error_in  : IN  SIGNED(31 DOWNTO 0);
+            omega_out : OUT SIGNED(31 DOWNTO 0)
         );
-    end component;
+    END COMPONENT;
 
-    component ema_filter is
-        Port (
+    COMPONENT ema_filter IS
+        PORT (
             clk      : IN  STD_LOGIC;
             reset    : IN  STD_LOGIC;
-            data_in  : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
-            data_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+            data_in  : IN  SIGNED(31 DOWNTO 0);
+            data_out : OUT SIGNED(31 DOWNTO 0)
         );
-    end component;
+    END COMPONENT;
 
 BEGIN
 
     parke_inst : parke_transform
-        port map (
+        PORT MAP (
             clk     => clk,
             reset   => reset,
             v_a     => v_a,
@@ -78,7 +74,7 @@ BEGIN
         );
 
     pi_ctrl_inst : pi_controller
-        port map (
+        PORT MAP (
             clk       => clk,
             reset     => reset,
             error_in  => v_q_ema,
@@ -86,7 +82,7 @@ BEGIN
         );
 
     ema_inst : ema_filter
-        port map (
+        PORT MAP (
             clk      => clk,
             reset    => reset,
             data_in  => v_q,
@@ -95,20 +91,20 @@ BEGIN
 
     PROCESS(clk)
     BEGIN
-        IF (reset = '1') THEN
-            theta_int <= (others => '0');
+        IF reset = '1' THEN
+            theta_int <= (OTHERS => '0');
         ELSIF rising_edge(clk) THEN
-            theta_int <= theta_int + shift_left(signed(omega_int) * Ts, 13);
-            IF (theta_int > x"6487ED5110BBA800") THEN
+            theta_int <= theta_int + shift_left(SIGNED(omega_int) * Ts, 13);
+            IF theta_int > x"6487ED5110BBA800" THEN
                 theta_int <= theta_int - x"6487ED5110BBA800";
-            ELSIF (theta_int < x"0000000000000000") THEN
+            ELSIF theta_int < x"0000000000000000" THEN
                 theta_int <= theta_int + x"6487ED5110BBA800";
             END IF;
         END IF;
     END PROCESS;
 
-    theta <= STD_LOGIC_VECTOR(theta_int(63 DOWNTO 32));
-    omega <= omega_int;
+    theta <= theta_int(63 DOWNTO 32);
+    omega <= STD_LOGIC_VECTOR(omega_int);
     phase <= STD_LOGIC_VECTOR(theta_int);
 
-end Behavioral;
+END Behavioral;

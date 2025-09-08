@@ -1,68 +1,73 @@
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity sogi is
-    PORT(
-        clk   : IN STD_LOGIC;
-        reset : IN STD_LOGIC;
-        v_in  : IN STD_LOGIC_VECTOR (31 DOWNTO 0); --28
-        v_out : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-        qv    : OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
-        );
-end sogi;
+ENTITY sogi IS
+    PORT (
+        clk    : IN  STD_LOGIC;
+        reset  : IN  STD_LOGIC;
+        v_in   : IN  SIGNED(31 DOWNTO 0);           
+        v_out  : OUT SIGNED(31 DOWNTO 0);
+        qv_out : OUT SIGNED(31 DOWNTO 0)
+    );
+END sogi;
 
-architecture Behavioral of sogi is
-SIGNAL v_int : signed(63 DOWNTO 0);--30
-SIGNAL qv_int : signed(63 DOWNTO 0);--60
-CONSTANT Ts : signed(31 DOWNTO 0) := x"00001062"; --32b/28
-CONSTANT k : signed(31 DOWNTO 0) := x"0199999a"; --32b/28
-CONSTANT omega_int : signed(31 DOWNTO 0) := x"013a28c6"; --32b/16
-CONSTANT k_omega : signed(31 DOWNTO 0) := x"01f6a7a3"; --32b/20
-begin
+ARCHITECTURE Behavioral OF sogi IS
 
-PROCESS(clk)
-variable v_var : signed(63 DOWNTO 0); --60
-variable qv_var : signed(63 DOWNTO 0);--60
+    SIGNAL clk_pulse  : STD_LOGIC;                  
+    SIGNAL qv_int     : SIGNED(63 DOWNTO 0);       
+    CONSTANT Ts       : SIGNED(31 DOWNTO 0) := x"00001062"; -- 32b/28
+    CONSTANT k        : SIGNED(31 DOWNTO 0) := x"0199999A"; -- 32b/28
+    CONSTANT omega_int: SIGNED(31 DOWNTO 0) := x"013A28C6"; -- 32b/16
+    CONSTANT k_omega  : SIGNED(31 DOWNTO 0) := x"01F6A7A3";
 
-variable diff1 : signed(31 DOWNTO 0);--60
+    SIGNAL diff_reg   : SIGNED(31 DOWNTO 0);
 
-variable mult1 : signed(63 DOWNTO 0);
-variable mult2 : signed(95 DOWNTO 0);
-variable mult3 : signed(95 DOWNTO 0);
-variable mult4 : signed(95 DOWNTO 0);
+    SIGNAL mult_reg_1 : SIGNED(63 DOWNTO 0);
+    SIGNAL mult_reg_2 : SIGNED(95 DOWNTO 0);
+    SIGNAL mult_reg_3 : SIGNED(95 DOWNTO 0);
+    SIGNAL mult_reg_4 : SIGNED(95 DOWNTO 0);
+    SIGNAL mult_reg_5 : SIGNED(95 DOWNTO 0);
 
-variable dv : signed(63 DOWNTO 0);
-variable dqv : signed(95 DOWNTO 0);
+    SIGNAL v          : SIGNED(63 DOWNTO 0);
+    SIGNAL qv         : SIGNED(63 DOWNTO 0);
 
-BEGIN 
-        
-     IF(rising_edge(clk)) THEN     
-        IF(reset = '1') THEN 
-            v_out <= (others => '0');
-            qv <= (others => '0');          
-            v_var := (others => '0');
-            qv_var := x"0000000000000000";
-            mult1 := (others => '0');
-            mult2 := (others => '0');
-            mult3 := (others => '0');
-            mult4 := (others => '0');
-        ELSE
-            diff1 := signed(v_in) - shift_left(v_var(63 DOWNTO 32),16);--32b/28
-            mult1 := k_omega * diff1; --64b/48
-            mult2 := omega_int*qv_var; --96b/60   
-            dv := mult1 - shift_left(mult2(95 DOWNTO 32),20); --64b/48   
-            mult3 := Ts*dv; --96b/76   
-            v_var := v_var + mult3(95 DOWNTO 32); --64b/44  
-            dqv := omega_int * v_var; --96b/60
-            mult4 := Ts*dqv(95 DOWNTO 32); --96b/56   
-            qv_var := qv_var + shift_left(mult4(95 DOWNTO 32),20); --64b/44
-               
-            v_out <= STD_LOGIC_VECTOR(shift_left(v_var(63 downto 32),16));
-            qv <= STD_LOGIC_VECTOR(shift_left(qv_var(63 downto 32),16));
+    SIGNAL dv         : SIGNED(63 DOWNTO 0);
+    SIGNAL dqv        : SIGNED(95 DOWNTO 0);
+
+BEGIN
+
+    PROCESS (clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF reset = '1' THEN
+                diff_reg   <= (OTHERS => '0');
+                v_out      <= (OTHERS => '0');
+                qv_out     <= (OTHERS => '0');
+                v          <= (OTHERS => '0');
+                qv         <= x"FFFFFF8F6D9E0000";
+                mult_reg_1 <= (OTHERS => '0');
+                mult_reg_2 <= (OTHERS => '0');
+                mult_reg_3 <= (OTHERS => '0');
+                mult_reg_4 <= (OTHERS => '0');
+                dv         <= x"0063368588FB9F9C";
+                dqv        <= x"0000001E38362993BE5BEFE1";
+            ELSE
+
+                diff_reg   <= v_in - SHIFT_LEFT(v(63 DOWNTO 32), 16);          -- 32b/28
+                mult_reg_1 <= k_omega * diff_reg;                               -- 64b/48
+                mult_reg_2 <= omega_int * qv;                                   -- 96b/60
+                dv         <= mult_reg_1 - SHIFT_LEFT(mult_reg_2(95 DOWNTO 32), 20); -- 64b/48
+                mult_reg_3 <= Ts * dv;                                          -- 96b/76
+                v          <= v + mult_reg_3(95 DOWNTO 32);                     -- 64b/44
+                dqv        <= omega_int * v;                                    -- 96b/60
+                mult_reg_4 <= Ts * dqv(95 DOWNTO 32);                           -- 96b/56
+                qv         <= qv + SHIFT_LEFT(mult_reg_4(95 DOWNTO 32), 20);    -- 64b/44
+
+                v_out  <= SHIFT_LEFT(v(63 DOWNTO 32), 16);
+                qv_out <= SHIFT_LEFT(qv(63 DOWNTO 32), 16);
+            END IF;
         END IF;
-    END IF;
-END PROCESS;
+    END PROCESS;
 
-end Behavioral;
+END Behavioral;

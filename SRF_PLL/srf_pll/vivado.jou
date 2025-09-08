@@ -3,23 +3,872 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Sun Aug 31 00:01:56 2025
-# Process ID: 19808
-# Current directory: C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2200 C:\Users\Jan\Desktop\SRF_PLL\SRF_PLL\srf_pll\srf_pll.xpr
-# Log file: C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/vivado.log
-# Journal file: C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll\vivado.jou
-# Running On        :DESKTOP-1FUVVL9
+# Start of session at: Mon Sep  1 19:04:56 2025
+# Process ID: 15364
+# Current directory: C:/Users/user/srf_pll/SRF_PLL/srf_pll
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6892 C:\Users\user\srf_pll\SRF_PLL\srf_pll\srf_pll.xpr
+# Log file: C:/Users/user/srf_pll/SRF_PLL/srf_pll/vivado.log
+# Journal file: C:/Users/user/srf_pll/SRF_PLL/srf_pll\vivado.jou
+# Running On        :DESKTOP-CNIMS8K
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
-# Processor Detail  :Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz
-# CPU Frequency     :2904 MHz
-# CPU Physical cores:6
-# CPU Logical cores :12
-# Host memory       :17037 MB
-# Swap memory       :16106 MB
-# Total Virtual     :33143 MB
-# Available Virtual :12246 MB
+# Processor Detail  :Intel(R) Core(TM) i5-8350U CPU @ 1.70GHz
+# CPU Frequency     :1896 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :17048 MB
+# Swap memory       :7516 MB
+# Total Virtual     :24564 MB
+# Available Virtual :12788 MB
 #-----------------------------------------------------------
 start_gui
-open_project C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.xpr
+open_project C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source tb_srf_pll.tcl
+run 3000 us
+run 3000 us
+run 3000 us
+run 3000 us
+run 3000 us
+run 3000 us
+run 3000 us
+run 3000 us
+run 3000 us
+run 9000 us
+run 9000 us
+run 9000 us
+run 9000 us
+export_ip_user_files -of_objects  [get_files C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sim_1/imports/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt] -no_script -reset -force -quiet
+remove_files  -fileset sim_1 C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sim_1/imports/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt
+file delete -force C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sim_1/imports/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse -scan_for_includes C:/Users/user/Documents/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt
+import_files -fileset sim_1 -norecurse C:/Users/user/Documents/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt
+close_sim
+launch_simulation
+source tb_srf_pll.tcl
+run 9000 us
+run 9000 us
+run 9000 us
+run 9000 us
+run 9000 us
+run 9000 us
+run 9000 us
+relaunch_sim
+run 9000 us
+run 9000 us
+run 9000 us
+run 9000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_sogi [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top sogi [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+launch_simulation
+close_sim
+launch_simulation
+source tb_sogi.tcl
+run 18000 us
+run 18000 us
+run 18000 us
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse -scan_for_includes C:/Users/user/Documents/MATLAB/OnePhaseHarmonics_64kHz_32bit.txt
+relaunch_sim
+close_sim
+launch_simulation
+source tb_sogi.tcl
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top srf_pll [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_srf_pll [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+launch_simulation
+close_sim
+launch_simulation
+source tb_srf_pll.tcl
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_sogi [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top sogi [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+launch_simulation
+launch_simulation
+close_sim
+launch_simulation
+source tb_sogi.tcl
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top srf_pll [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_srf_pll [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+relaunch_sim
+close_sim
+launch_simulation
+source tb_srf_pll.tcl
+run 18000 us
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+relaunch_sim
+run 18000 us
+run 18000 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 18000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+relaunch_sim
+run 88000 us
+close_sim
+launch_simulation
+source tb_srf_pll.tcl
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+close_sim
+launch_simulation
+source tb_srf_pll.tcl
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+relaunch_sim
+run 88000 us
+run 88000 us
+run 88000 us
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top parke_transform [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_parke_transform [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+launch_simulation
+close_sim
+launch_simulation
+source tb_parke_transform.tcl
+run 88000 us
+relaunch_sim
+run 8 us
+run 500 ns
+relaunch_sim
+run 500 ns
+run 5000 ns
+run 5000 ns
+run 5000 ns
+run 5000 ns
+run 5000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+relaunch_sim
+run 50000 ns
+run 50000 ns
+run 50000 ns
+relaunch_sim
+run 50000 ns
+run 50000 ns
+run 50000 ns
+relaunch_sim
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+relaunch_sim
+run 50000 ns
+relaunch_sim
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 50000 ns
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+relaunch_sim
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_srf_pll [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top srf_pll [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+launch_simulation
+close_sim
+launch_simulation
+source tb_srf_pll.tcl
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+relaunch_sim
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 5000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+add_bp {C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/sogi.vhd} 68
+run 50000 us
+run 50000 us
+run 50000 us
+add_bp {C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/sogi.vhd} 75
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+remove_bps -file {C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/sogi.vhd} -line 75
+remove_bps -file {C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/sogi.vhd} -line 68
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+relaunch_sim
+relaunch_sim
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us
+run 50000 us

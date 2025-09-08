@@ -2,95 +2,92 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity tb_cordic_sin_cos is
-end tb_cordic_sin_cos;
+ENTITY tb_cordic_sin_cos IS
+END tb_cordic_sin_cos;
 
-architecture behavior of tb_cordic_sin_cos is
+ARCHITECTURE behavior OF tb_cordic_sin_cos IS
 
-    component cordic_sin_cos
-        PORT(
-            clk        : IN  STD_LOGIC;
-            reset      : IN  STD_LOGIC;
-            theta      : IN  STD_LOGIC_VECTOR (31 DOWNTO 0);
-            sin_value  : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-            cos_value  : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-            iterations : IN  INTEGER RANGE 1 TO 16
+    COMPONENT cordic_sin_cos
+        GENERIC (
+            iterations : INTEGER
         );
-    end component;
+        PORT(
+            clk       : IN  STD_LOGIC;
+            reset     : IN  STD_LOGIC;
+            theta     : IN  SIGNED(31 DOWNTO 0);
+            sin_value : OUT SIGNED(31 DOWNTO 0);
+            cos_value : OUT SIGNED(31 DOWNTO 0)
+        );
+    END COMPONENT;
 
-    signal clk        : STD_LOGIC := '0';
-    signal reset      : STD_LOGIC := '1';
-    signal theta      : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '0');
-    signal sin_value  : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    signal cos_value  : STD_LOGIC_VECTOR(31 DOWNTO 0);
-    signal iterations : INTEGER := 16;
+    SIGNAL clk        : STD_LOGIC := '0';
+    SIGNAL reset      : STD_LOGIC := '1';
+    SIGNAL theta      : SIGNED(31 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL sin_value  : SIGNED(31 DOWNTO 0);
+    SIGNAL cos_value  : SIGNED(31 DOWNTO 0);
+    SIGNAL iterations : INTEGER := 16;
 
-    constant clk_period : time := 10 ns;
+    CONSTANT clk_period : TIME := 10 ns;
 
-    constant PI        : signed(31 downto 0) := to_signed(843314857, 32);
-    constant HALF_PI   : signed(31 downto 0) := to_signed(421657429, 32);
-    constant TWO_PI    : signed(31 downto 0) := to_signed(1686629714, 32);
-    constant PI_3_2    : signed(31 downto 0) := to_signed(1264972286, 32);
-    constant PI_1_4    : signed(31 downto 0) := to_signed(210828714, 32);
-    constant variable_rad    : signed(31 downto 0) := x"78000000";
+    CONSTANT PI        : SIGNED(31 DOWNTO 0) := to_signed(843314857, 32);
+    CONSTANT HALF_PI   : SIGNED(31 DOWNTO 0) := to_signed(421657429, 32);
+    CONSTANT TWO_PI    : SIGNED(31 DOWNTO 0) := to_signed(1686629714, 32);
+    CONSTANT PI_3_2    : SIGNED(31 DOWNTO 0) := to_signed(1264972286, 32);
+    CONSTANT PI_1_4    : SIGNED(31 DOWNTO 0) := to_signed(210828714, 32);
+    CONSTANT VARIABLE_RAD : SIGNED(31 DOWNTO 0) := x"78000000";
 
-begin
+BEGIN
 
     uut: cordic_sin_cos
-        PORT MAP (
-            clk        => clk,
-            reset      => reset,
-            theta      => theta,
-            sin_value  => sin_value,
-            cos_value  => cos_value,
+        GENERIC MAP (
             iterations => iterations
+        )
+        PORT MAP (
+            clk       => clk,
+            reset     => reset,
+            theta     => theta,
+            sin_value => sin_value,
+            cos_value => cos_value
         );
 
-    clk_process : process
-    begin
-        while now < 1000 ns loop
+    clk_process : PROCESS
+    BEGIN
+        WHILE now < 1000 ns LOOP
             clk <= '0';
-            wait for clk_period / 2;
+            WAIT FOR clk_period / 2;
             clk <= '1';
-            wait for clk_period / 2;
-        end loop;
-        wait;
-    end process;
+            WAIT FOR clk_period / 2;
+        END LOOP;
+        WAIT;
+    END PROCESS;
 
-    stim_proc : process
-    begin
-        -- reset
-        wait for 20 ns;
+    stim_proc : PROCESS
+    BEGIN
+        WAIT FOR 20 ns;
         reset <= '0';
 
-        -- theta = 0
-        theta <= std_logic_vector(to_signed(0, 32));
-        wait for 10 ns;
+        theta <= to_signed(0, 32);
+        WAIT FOR 10 ns;
 
-        -- theta = π/4
-        theta <= std_logic_vector(PI_1_4);
-        wait for 10 ns;
+        theta <= PI_1_4;
+        WAIT FOR 10 ns;
 
-        -- theta = π/2
-        theta <= std_logic_vector(HALF_PI);
-        wait for 10 ns;
+        theta <= HALF_PI;
+        WAIT FOR 10 ns;
 
-        -- theta = π
-        theta <= std_logic_vector(PI);
-        wait for 10 ns;
+        theta <= PI;
+        WAIT FOR 10 ns;
 
-        -- theta = 3π/2
-        theta <= std_logic_vector(PI_3_2);
-        wait for 10 ns;
+        theta <= PI_3_2;
+        WAIT FOR 10 ns;
 
-        -- theta = 2π
-        theta <= std_logic_vector(TWO_PI);
-        wait for 10 ns;
-        
-        theta <= std_logic_vector(variable_rad);
-        wait for 10 ns;
+        theta <= TWO_PI;
+        WAIT FOR 10 ns;
 
-        wait;
-    end process;
+        theta <= VARIABLE_RAD;
+        WAIT FOR 10 ns;
 
-end behavior;
+        WAIT;
+    END PROCESS;
+
+END behavior;

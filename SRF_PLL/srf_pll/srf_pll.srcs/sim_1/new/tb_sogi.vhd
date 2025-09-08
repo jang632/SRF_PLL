@@ -10,9 +10,9 @@ end tb_sogi;
 architecture behavior of tb_sogi is
     signal clk   : std_logic := '0';
     signal reset : std_logic := '0';
-    signal v_in  : std_logic_vector(31 downto 0);
-    signal v_out : std_logic_vector(31 downto 0);
-    signal qv    : std_logic_vector(31 downto 0);
+    signal v_in  : signed(31 downto 0);
+    signal v_out : signed(31 downto 0);
+    signal qv    : signed(31 downto 0);
 
     file txt_file : text;
 begin
@@ -44,11 +44,11 @@ begin
         -- Reset
         v_in  <= (others => '0');
         reset <= '1';
-        wait for 23000 ns;
+        wait for 27000 ns;
         reset <= '0';
 
         -- Otwórz plik z danymi sinusoidalnymi
-        file_open(txt_file, "SinglePhaseHarmonics_64kHz_32bit.txt", read_mode);
+        file_open(txt_file, "OnePhaseHarmonics_64kHz_32bit.txt", read_mode);
 
         while not endfile(txt_file) loop
             readline(txt_file, line_buf);
@@ -56,7 +56,7 @@ begin
             
             -- Konwersja 16-bit do 32-bit (z przesunięciem w górę do Q28)
             vg_temp := signed(col1_txt);
-            v_in <= std_logic_vector(shift_right(vg_temp,3));
+            v_in <= std_logic_vector(shift_right(vg_temp,1));
 
             wait for 15625 ns; -- krok czasowy próbkowania
         end loop;

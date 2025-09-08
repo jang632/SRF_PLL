@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="67" Path="C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.xpr">
+<Project Product="Vivado" Version="7" Minor="67" Path="C:/Users/user/srf_pll/SRF_PLL/srf_pll/srf_pll.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="84580f74071c4f03a4f80ed898ef3d5a"/>
@@ -58,7 +58,7 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="357"/>
+    <Option Name="WTXSimLaunchSim" Val="974"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -143,22 +143,9 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/tb_srf_pll.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/tb_shift_register.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="tb_srf_pll"/>
+        <Option Name="TopModule" Val="srf_pll"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
@@ -169,9 +156,8 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/new/tb_sogi.vhd">
+      <File Path="$PSRCDIR/sim_1/new/tb_srf_pll.vhd">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -204,6 +190,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sim_1/new/tb_sogi.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sim_1/imports/Desktop/PhaseSim50Hz.txt">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../PhaseSim50Hz.txt"/>
@@ -222,16 +215,29 @@
           <Attr Name="ImportTime" Val="1752098924"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/MATLAB/SinglePhaseHarmonics_64kHz_32bit.txt">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/MATLAB/SinglePhaseHarmonics_64kHz_32bit.txt"/>
-          <Attr Name="ImportTime" Val="1756590513"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sim_1/imports/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt"/>
-          <Attr Name="ImportTime" Val="1756594083"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../Documents/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt"/>
+          <Attr Name="ImportTime" Val="1757242390"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/imports/MATLAB/OnePhaseGen.m">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../Documents/MATLAB/OnePhaseGen.m"/>
+          <Attr Name="ImportTime" Val="1757243429"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/imports/MATLAB/OnePhaseHarmonics_64kHz_32bit.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../Documents/MATLAB/OnePhaseHarmonics_64kHz_32bit.txt"/>
+          <Attr Name="ImportTime" Val="1757244545"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/new/tb_shift_register.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <Config>

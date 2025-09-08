@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "tb_parke_transform_behav" "xil_defaultlib.tb_parke_transform" -log "elaborate.log" 

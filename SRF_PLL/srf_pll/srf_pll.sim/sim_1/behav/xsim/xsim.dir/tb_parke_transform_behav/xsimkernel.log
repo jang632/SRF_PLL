@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_parke_transform_behav/xsimk.exe -simmode gui -wdb tb_parke_transform_behav.wdb -simrunnum 0 -socket 56334
+Design successfully loaded
+Design Loading Memory Usage: 7728 KB (Peak: 7728 KB)
+Design Loading CPU Usage: 31 ms
+Simulation completed
+Simulation Memory Usage: 13400 KB (Peak: 13400 KB)
+Simulation CPU Usage: 2733 ms
