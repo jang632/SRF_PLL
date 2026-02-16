@@ -1,7 +1,0 @@
-Running: xsim.dir/tb_sogi_behav/xsimk.exe -simmode gui -wdb tb_sogi_behav.wdb -simrunnum 0 -socket 52575
-Design successfully loaded
-Design Loading Memory Usage: 7684 KB (Peak: 7684 KB)
-Design Loading CPU Usage: 31 ms
-Simulation completed
-Simulation Memory Usage: 16140 KB (Peak: 16140 KB)
-Simulation CPU Usage: 1906 ms

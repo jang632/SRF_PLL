@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.runs/synth_1/srf_pll.tcl"
+  variable script "C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.runs/synth_1/srf_pll.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,33 +56,34 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param place.newIOReportForVersal 1
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_param synth.incrementalSynthesisCache C:/Users/Jan/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-21772-DESKTOP-1FUVVL9/incrSyn
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
+set_msg_config  -severity {STATUS}  -suppress 
+set_msg_config  -severity {INFO}  -suppress 
+set_msg_config  -severity {WARNING}  -suppress 
+set_msg_config  -severity {CRITICAL WARNING}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.cache/wt [current_project]
-set_property parent.project_path C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.cache/wt [current_project]
+set_property parent.project_path C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.cache/ip [current_project]
+set_property ip_output_repo c:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/clarke_transform.vhd
-  C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/cordic_sin_cos.vhd
-  C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/ema_filter.vhd
-  C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/parke_transform.vhd
-  C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/pi_controller.vhd
-  C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/shift_register.vhd
-  C:/Users/Jan/Desktop/SRF_PLL/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/srf_pll.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/clarke_transform.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/cordic_sin_cos.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/ema_filter.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/parke_transform.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/pi_controller.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/psc.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/shift_register.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/sogi.vhd
+  C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/sources_1/new/srf_pll.vhd
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -93,7 +94,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/constrs_1/new/constr.xdc
+set_property used_in_implementation false [get_files C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/constrs_1/new/constr.xdc]
+
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental C:/Users/user/Desktop/srf_pll/SRF_PLL/srf_pll/srf_pll.srcs/utils_1/imports/synth_1/srf_pll.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

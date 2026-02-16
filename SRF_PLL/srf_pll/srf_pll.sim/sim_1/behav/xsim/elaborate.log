@@ -1,8 +1,36 @@
 Vivado Simulator v2024.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_srf_pll_behav xil_defaultlib.tb_srf_pll -log elaborate.log 
+Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_srf_pll_behav xil_defaultlib.tb_srf_pll xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
+Pass Through NonSizing Optimizer
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling package xil_defaultlib.pkg
+Compiling package vl.vl_types
+Compiling module xil_defaultlib.glbl
+Compiling architecture behavioral of entity xil_defaultlib.enable_generator [\enable_generator(count=20)\]
+Compiling module unisims_ver.IBUF
+Compiling module unisims_ver.PLLE2_ADV(CLKFBOUT_MULT=41,CLKIN...
+Compiling module unisims_ver.BUFG
+Compiling module xil_defaultlib.clk_wiz_0_clk_wiz
+Compiling module xil_defaultlib.clk_wiz_0
+Compiling architecture behavioral of entity xil_defaultlib.shift_buffer [\shift_buffer(length=2,width=16)...]
+Compiling architecture behavioral of entity xil_defaultlib.sogi [sogi_default]
+Compiling architecture behavioral of entity xil_defaultlib.cordic_sin_cos [\cordic_sin_cos(iterations=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.shift_register [\shift_register(length=14)\]
+Compiling architecture behavioral of entity xil_defaultlib.parke_transform [parke_transform_default]
+Compiling architecture behavioral of entity xil_defaultlib.pi_controller [pi_controller_default]
+Compiling architecture behavioral of entity xil_defaultlib.ema_filter [ema_filter_default]
+Compiling architecture behavioral of entity xil_defaultlib.integrator [integrator_default]
+Compiling architecture behavioral of entity xil_defaultlib.srf_pll [srf_pll_default]
+Compiling architecture tb of entity xil_defaultlib.tb_srf_pll
+Built simulation snapshot tb_srf_pll_behav
