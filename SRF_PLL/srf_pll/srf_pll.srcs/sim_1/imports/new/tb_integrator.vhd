@@ -16,14 +16,8 @@ architecture tb of tb_integrator is
 
 begin
 
-    -- =========================
-    -- Clock
-    -- =========================
     clk <= not clk after CLK_PERIOD/2;
 
-    -- =========================
-    -- DUT instancja
-    -- =========================
     uut: entity work.integrator
         port map (
             clk      => clk,
@@ -32,26 +26,20 @@ begin
             data_out => data_out
         );
 
-    -- =========================
-    -- Stimulus proces - Q20
-    -- =========================
     stim_proc: process
     begin
-        -- reset
         rst <= '1';
         wait for 2*CLK_PERIOD;
         rst <= '0';
 
-        -- proste próbki w Q20
         data_in <= to_signed(0,32); wait for CLK_PERIOD;
         data_in <= to_signed(0,32); wait for CLK_PERIOD;
-        data_in <= to_signed(1048576,32); wait for CLK_PERIOD; -- 1.0 Q20
+        data_in <= to_signed(1048576,32); wait for CLK_PERIOD;
         data_in <= to_signed(1048576,32); wait for CLK_PERIOD;
         data_in <= to_signed(1048576,32); wait for CLK_PERIOD;
         data_in <= to_signed(1048576,32); wait for CLK_PERIOD;
         data_in <= to_signed(0,32); wait for CLK_PERIOD;
 
-        -- zatrzymaj symulację
         wait;
     end process;
 

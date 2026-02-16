@@ -197,51 +197,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/Desktop/PhaseSim50Hz.txt">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../PhaseSim50Hz.txt"/>
-          <Attr Name="ImportTime" Val="1752075688"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/Desktop/ThreePhaseSim.txt">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../ThreePhaseSim.txt"/>
-          <Attr Name="ImportTime" Val="1752075688"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/MATLAB/Sine50Hz_64kHz.txt">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/MATLAB/Sine50Hz_64kHz.txt"/>
-          <Attr Name="ImportTime" Val="1752098924"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/MATLAB/ThreePhaseHarmonics_64kHz_16bit.txt"/>
-          <Attr Name="ImportTime" Val="1757242390"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/MATLAB/OnePhaseGen.m">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/MATLAB/OnePhaseGen.m"/>
-          <Attr Name="ImportTime" Val="1757243429"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/MATLAB/OnePhaseHarmonics_64kHz_32bit.txt">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/MATLAB/OnePhaseHarmonics_64kHz_32bit.txt"/>
-          <Attr Name="ImportTime" Val="1757244545"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/new/tb_parke_transform.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/sogi_tustin/sogi_tustin.srcs/sim_1/new/tb_parke_transform.vhd"/>
-          <Attr Name="ImportTime" Val="1767888989"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sim_1/imports/new/tb_pi_controller.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
@@ -265,15 +220,6 @@
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/sogi_tustin/sogi_tustin.srcs/sim_1/new/tb_integrator.vhd"/>
           <Attr Name="ImportTime" Val="1767898622"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/new/tb_shift_buffer.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../Documents/sogi_tustin/sogi_tustin.srcs/sim_1/new/tb_shift_buffer.vhd"/>
-          <Attr Name="ImportTime" Val="1766496343"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
