@@ -10,9 +10,9 @@ architecture tb of tb_srf_pll is
 
     constant WIDTH : integer := 16;
 
-    constant FS        : real := 64000.0;
+    constant FS        : real := 50000.0;
     constant F_SIGNAL  : real := 50.0;
-    constant SLOW_PER  : time := 15.625 us;
+    constant SLOW_PER  : time := 20 us;
     constant FAST_PER  : time := 100 ns;
     constant AMP       : real := 0.9;
 
@@ -39,14 +39,14 @@ begin
 
     uut : entity work.srf_pll
         port map (
-            clk     => clk,
+            clk     => slw_clk,
             rst     => rst,
             v_n     => v_n,
             omega   => omega,
             phase   => phase
         );
 
-    clk <= not clk after FAST_PER/2;
+    --clk <= not clk after FAST_PER/2;
     slw_clk <= not slw_clk after SLOW_PER/2;
 
     process

@@ -33,20 +33,22 @@ end sogi;
 architecture Behavioral of sogi is
     
 component shift_buffer
-generic(
-    LENGTH : integer := 3;
-    WIDTH  : integer := 8
-);
+    generic(
+        DATA_WIDTH  : integer := 32;
+        FIXED_POINT : integer := 16;
+        INIT        : real := 0.0;
+        DEPTH       : integer := 4
+    );
 port(
     clk      : in std_logic;
     rst      : in std_logic;
     ce       : in std_logic;
     data_in  : in signed(WIDTH-1 downto 0);
-    data_out : out t_array(0 to LENGTH-1)(WIDTH-1 downto 0)
+    data_out : out t_array(0 to DEPTH-1)(DATA_WIDTH-1 downto 0)
 );   
 end component;    
 
-signal array_v_n      : t_array(0 to 1)(WIDTH-1 downto 0);
+signal array_v_n      : t_array(0 to 2)(WIDTH-1 downto 0);
 
 signal r_v            : signed(2*WIDTH-1 downto 0) := (OTHERS => '0');
 signal a_mul_reg_1    : signed(63 downto 0) := (OTHERS => '0');
@@ -57,20 +59,30 @@ signal b_mul_reg_1    : signed(63 downto 0) := (OTHERS => '0');
 signal b_add_reg      : signed(63 downto 0) := (OTHERS => '0');
 
 
-constant x      : signed(31 downto 0) := x"001C6F38";  -- +0.0069420046
-constant y      : signed(31 downto 0) := x"00001944";  -- +0.0000240957
-constant D      : signed(31 downto 0) := x"401C887C";  -- +4.0069661003
-constant inv_D  : signed(31 downto 0) := x"03FE3843";  -- +0.2495653756
-constant M0     : signed(31 downto 0) := x"7FFFCD78";  -- +7.9999518086
-constant M1     : signed(31 downto 0) := x"3FE3AA0C";  -- +3.9930820911
-constant ky     : signed(31 downto 0) := x"000011DE";  -- +0.0000170382
+constant x      : signed(31 downto 0) := x"00246567";  -- +0.0088857659
+constant y      : signed(31 downto 0) := x"00002965";  -- +0.0000394784
+constant D      : signed(31 downto 0) := x"40248ECC";  -- +4.0089252443
+constant inv_D  : signed(31 downto 0) := x"03FDB861";  -- +0.2494434141
+constant M0     : signed(31 downto 0) := x"7FFFAD35";  -- +7.9999210432
+constant M1     : signed(31 downto 0) := x"3FDBC3FF";  -- +3.9911537125
+constant ky     : signed(31 downto 0) := x"00001D45";  -- +0.0000279155
+
+--constant x      : signed(31 downto 0) := x"001C6F38";  -- +0.0069420046
+--constant y      : signed(31 downto 0) := x"00001944";  -- +0.0000240957
+--constant D      : signed(31 downto 0) := x"401C887C";  -- +4.0069661003
+--constant inv_D  : signed(31 downto 0) := x"03FE3843";  -- +0.2495653756
+--constant M0     : signed(31 downto 0) := x"7FFFCD78";  -- +7.9999518086
+--constant M1     : signed(31 downto 0) := x"3FE3AA0C";  -- +3.9930820911
+--constant ky     : signed(31 downto 0) := x"000011DE";  -- +0.0000170382
 
 begin
 
 u_shift_buffer_v : shift_buffer
 generic map(
-    LENGTH   => 2,
-    WIDTH    => WIDTH
+    DATA_WIDTH  => WIDTH,
+    FIXED_POINT => 0,
+    INIT   => 0.0,
+    DEPTH    => 3
 )
 port map(
     clk      => clk,

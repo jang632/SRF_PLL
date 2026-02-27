@@ -25,7 +25,8 @@ ARCHITECTURE Behavioral OF srf_pll IS
     SIGNAL theta_int       : SIGNED(31 DOWNTO 0);
     SIGNAL theta_saturated : SIGNED(31 DOWNTO 0);
 
-    CONSTANT Ts      : SIGNED(31 DOWNTO 0) := x"00008312";
+--    CONSTANT Ts      : SIGNED(31 DOWNTO 0) := x"0000A7C6";
+    CONSTANT Ts      : SIGNED(31 DOWNTO 0) := x"0000a7c6";
 
     SIGNAL v_q_ema   : SIGNED(31 DOWNTO 0) := (OTHERS => '0');
     
@@ -35,7 +36,7 @@ ARCHITECTURE Behavioral OF srf_pll IS
     
      component enable_generator
      generic(
-         COUNT : integer := 156
+         COUNT : integer := 1
      );
      port(
          clk        : in  std_logic;
@@ -45,12 +46,27 @@ ARCHITECTURE Behavioral OF srf_pll IS
      end component;
     
 
-     component clk_wiz_0
-     port (
-        clk_out1 : out std_logic;
-        clk_in1  : in  std_logic
-     );
-     end component;
+--     component clk_wiz_0
+--     port (
+--        clk_out1 : out std_logic;
+--        clk_in1  : in  std_logic
+--     );
+--     end component;
+
+    component MAF_filter
+        generic(
+            DATA_WIDTH    : integer := 16;
+            WINDOW_LENGTH : integer := 500;
+            FIXED_POINT   : integer := 6
+        );
+        port(
+            clk      : in std_logic;
+            rst      : in std_logic;
+            ce       : in std_logic;
+            data_in  : in  signed(DATA_WIDTH-1 downto 0);
+            data_out : out signed(DATA_WIDTH-1 downto 0)
+        );
+    end component;
     
     component sogi
     generic(
@@ -65,6 +81,18 @@ ARCHITECTURE Behavioral OF srf_pll IS
         qv       : out signed(2*WIDTH-1 downto 0)
     );
     end component;
+    
+    component notch_filter
+    port(
+        clk : in std_logic;
+        rst : in std_logic;
+        ce  : in std_logic;
+        data_in  : in signed(31 downto 0);
+        data_out : out signed(31 downto 0)
+    );
+    end component;
+
+
 
     component parke_transform is
     port (
@@ -121,20 +149,34 @@ begin
         enable_out => enable 
     );
 
-    u_pll : clk_wiz_0
-    port map (
-        clk_out1 => clk_10M,
-        clk_in1  => clk
-    );
+--    u_pll : clk_wiz_0
+--    port map (
+--        clk_out1 => clk_10M,
+--        clk_in1  => clk
+--    );
+
+--    u_maf_filter_inst : MAF_filter
+--    generic map (
+--        DATA_WIDTH    => 32,
+--        WINDOW_LENGTH => 500,
+--        FIXED_POINT   => 24
+--    )
+--    port map (
+--        clk      => clk,      -- Twój zegar systemowy
+--        rst      => rst,      -- Twój sygnał resetu
+--        ce       => '1',   -- Sygnał zezwolenia (obecnie ignorowany wewnątrz)
+--        data_in  => v_q,
+--        data_out => v_q_ema
+--    );
 
     u_sogi : sogi
     generic map (
         WIDTH => 16
     )
     port map (
-        clk     => clk_10M,
+        clk     => clk,
         rst     => rst,
-        ce      => enable,
+        ce      => '1',
         v_n     => v_n,
         v       => v,
         qv      => qv
@@ -142,7 +184,7 @@ begin
 
     parke_inst : parke_transform
     port map (
-        clk     => clk_10M,
+        clk     => clk,
         rst     => rst,
         ce      => '1',
         v_alpha => v,
@@ -154,27 +196,37 @@ begin
 
     pi_ctrl_inst : pi_controller
     port map (
-        clk      => clk_10M,
+        clk      => clk,
         rst      => rst,
-        ce       => enable,
+        ce       => '1',
         data_in  => v_q_ema,
         data_out => omega_int
     );
 
     u_ema : ema_filter
     port map (
-        clk      => clk_10M,
+        clk      => clk,
         reset    => rst,
-        ce       => enable,
+        ce       => '1',
         data_in  => v_q,
         data_out => v_q_ema
     );
     
+--     u_notch_filter : notch_filter
+--    port map(
+--        clk      => clk,
+--        rst      => rst,
+--        ce       => '1',
+--        data_in  => v_q,
+--        data_out => v_q_ema
+--    );
+
+    
     u_integrator : integrator
     port map (
-        clk      => clk_10M,
+        clk      => clk,
         rst      => rst,
-        ce       => enable,
+        ce       => '1',
         data_in  => omega_int,
         data_out => theta_int
     );

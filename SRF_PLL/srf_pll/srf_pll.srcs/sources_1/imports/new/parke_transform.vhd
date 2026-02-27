@@ -93,8 +93,8 @@ begin
             v_q_int <= (others => '0');
         elsif (rising_edge(clk)) then
             if(ce = '1') then
-                v_d_int <= v_alpha_delayed * cos_val + v_beta_delayed  * sin_val;
-                v_q_int <= v_beta_delayed  * cos_val - v_alpha_delayed  * sin_val;
+                v_d_int <= v_alpha_delayed * sin_val + v_beta_delayed  * cos_val;
+                v_q_int <= v_beta_delayed  * sin_val - v_alpha_delayed  * cos_val;
             end if;
         end if;
     end process;

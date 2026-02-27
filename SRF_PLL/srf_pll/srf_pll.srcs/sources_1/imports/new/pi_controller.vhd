@@ -32,11 +32,29 @@ architecture Behavioral of pi_controller is
 signal d_data_in : signed(31 downto 0);
 signal u         : signed(63 downto 0);
 
-constant b0 : signed(31 downto 0) := x"3201999A";
-constant b1 : signed(31 downto 0) := x"CE01999A";
+--constant b0 : signed(31 downto 0) := x"32020C4A"; -- float: 50.0080
+--constant b1 : signed(31 downto 0) := x"CE020C4A"; -- float: -49.9920
+
+--constant W0         : signed(63 downto 0) := x"013a28c59d544a70";
+--constant leak_coeff : signed(31 downto 0) := x"7ffffea8";
+constant b0 : signed(31 downto 0) := x"00B7113D"; -- float: 0.7151
+constant b1 : signed(31 downto 0) := x"FF4D0757";
 
 constant W0         : signed(63 downto 0) := x"013a28c59d544a70";
-constant leak_coeff : signed(31 downto 0) := x"7ffffea8";
+constant leak_coeff : signed(31 downto 0) := x"7fffffff";
+
+function truncate(data_in : signed; limit : signed) return signed is
+    variable data_out : signed(data_in'range);
+begin
+    if data_in > limit then
+        data_out := limit;
+    elsif data_in < -limit then
+        data_out := -limit;
+    else
+        data_out := data_in;
+    end if;  
+    return data_out;
+end function;
 
 begin
 

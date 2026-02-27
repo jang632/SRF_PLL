@@ -25,7 +25,7 @@ begin
             data_out <= (others => '0');
         elsif rising_edge(clk) then
             if(ce = '1') then
-                ema_val  <= ema_val + shift_right(data_in - ema_val, 6);
+                ema_val  <= ema_val + shift_right(data_in - ema_val, 9);
                 data_out <= ema_val;
             end if;
         end if;
